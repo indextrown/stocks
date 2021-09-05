@@ -1,0 +1,12 @@
+beautifulsoup4
+requests
+flask
+lxml
+xmltodict
+smmap
+urllib3
+Flask
+urllib3
+heroku
+heroku3
+apscheduler
