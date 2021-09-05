@@ -1,7 +1,6 @@
 name: helloGithubAction
 
 on: [push]
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,12 +17,12 @@ jobs:
       run: python test.py
     - name: Commit files
       run: |
-        git config --local user.email "lghan00020@nate.com  "
-        git config --local user.name "indextrown"
+        git config --local user.email "paullabkorea@gmail.com"
+        git config --local user.name "paullabkorea"
         git add .
         git commit -m "Run crawler and update current data"
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
         # branch: "master"
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}   
