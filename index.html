@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,32 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Github Action Crawling Page</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarScroll">
-            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Github repo</a>
-              </li>
-            </ul>
-            <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-          </div>
-        </div>
-      </nav>
-      <br>
+
     <div class="container">
         <div class="row">
             <div class="col-6">
@@ -44,12 +20,6 @@
                       <h5 class="card-title">기본 정보</h5>
                       <p class="card-text">
                           <p id="시가총액"></p>
-                          <p id="시가총액순위"></p>
-                          <p id="상장주식수"></p>
-                          <p id="배당수익률"></p>
-                          <p id="매출"></p>
-                          <p id="비용"></p>
-                          <p id="순익"></p>
                       </p>
                     </div>
                 </div>
@@ -74,20 +44,22 @@
                     <div class="card-header">일일 상세 정보</div>
                     <div class="card-body text-dark">
                       <h5 class="card-title">Dark card title</h5>
-                      <p class="card-text">
-                          <table class="table">
-                              <thead>
+                      <p class=""card-text">
+                        <table class="table">
+                            <thead>
                                 <tr>
                                     <th>날짜</th>
                                     <th>종가</th>
                                     <th>전일비</th>
                                     <th>거래량</th>
                                 </tr>
-                              </thead>
-                              <tbody>
-                              </tbody>
-                          </table>
+
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+
                       </p>
+
                     </div>
                 </div>
             </div>
@@ -95,13 +67,7 @@
     </div>
 <script src="data.js"></script>
 <script>
-    document.getElementById('시가총액').innerHTML = '시가총액 : ' + 시가총액
-    document.getElementById('시가총액순위').innerHTML = '시가총액순위 : ' + 시가총액순위
-    document.getElementById('상장주식수').innerHTML = '상장주식수 : ' + 상장주식수
-    document.getElementById('배당수익률').innerHTML = '배당수익률 : ' + 배당수익률
-    document.getElementById('매출').innerHTML = '매출 : ' + 매출
-    document.getElementById('비용').innerHTML = '비용 : ' + 비용
-    document.getElementById('순익').innerHTML = '순익 : ' + 순익
+    document.getElementById('시가총액').innerHTML = '시가총액 : ' + 시가총액 +'억원'
 
     let tableBodyData = [];
     for (let variable of data) {
@@ -116,42 +82,5 @@
     }
     document.querySelector('.table > tbody').innerHTML = tableBodyData.join('');
 </script>
-<script>
-    let labels_chart_input = [];
-    let data_chart_input = [];
-    for (let variable of data) {
-        labels_chart_input.push(variable.날짜)
-        data_chart_input.push(variable.종가)
-    }
-	var config = {
-		type: 'line',
-		data: {
-			labels: labels_chart_input,
-			datasets: [{
-				label: '종가',
-				backgroundColor: 'red',
-				borderColor: 'red',
-				fill: false,
-				data: data_chart_input,
-			}]
-		},
-		options: {
-			responsive: true,
-			title: {
-				display: true,
-				text: '데이터 시각화'
-			},
-			scales: {
-				xAxes: [{
-					display: true,
-				}],
-			}
-		}
-	};
 
-	window.onload = function() {
-		var ctx = document.getElementById('canvas').getContext('2d');
-		window.myLine = new Chart(ctx, config);
-	};
-	</script>
 </body>
