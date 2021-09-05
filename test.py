@@ -79,7 +79,7 @@ with open('data.js', "r", encoding="UTF-8-sig") as f:
         data += line
         line = f.readline()
 #파일에 변수명을 추가하여 다시 쓴다.
-final_data = f"var data = {data};\n\"
+final_data = f"var data = {data};"
 final_data = f"var 시가총액 = '{시가총액}';\n\
 " + final_data
 with open('data.js', "w", encoding="UTF-8-sig") as f_write:
