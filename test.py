@@ -7,11 +7,12 @@ from bs4 import BeautifulSoup
 
 res = requests.get("https://finance.naver.com/item/sise_day.nhn?code=005930&page=1")
 
- 
+res1 = requests.get("https://finance.naver.com/item/main.nhn?code=005930")
 
 soup = BeautifulSoup(res.text, 'lxml')
+soup1 = BeautifulSoup(res1.text, 'lxml')
 
-res.status_code
+
 
 
 
@@ -29,8 +30,7 @@ res = requests.get(
 )
 
 
-res.text
-soup = bs4.BeautifulSoup(res.text)
+
 
 total_data_list = []
 for page_number in range(1, 2):
@@ -41,10 +41,13 @@ for page_number in range(1, 2):
 soup.select("table.type2 > tr[onmouseover='mouseOver(this)'] > td[align='center']")
 twoStep = soup.select("table.type2 > tr[onmouseover='mouseOver(this)']")[0:]
 
+
 날짜 = []
 종가 = []
 전일비 = []
 거래량 = []
+
+시가총액 = soup1.select("em#_market_sum")[0].text.replace('\t' , '').strip().replace('\n' , '')
 for i in twoStep:
     날짜.append(i.select('td[align="center"] > span')[0].text)
     종가.append(int(i.select('td.num > span')[0].text.replace(',', '')))
@@ -77,5 +80,6 @@ with open('data.js', "r", encoding="UTF-8-sig") as f:
         line = f.readline()
 #파일에 변수명을 추가하여 다시 쓴다.
 final_data = f"var data = {data};"
+final_data = f"var 시가총액 = '{시가총액}';\n\ " + final_data
 with open('data.js', "w", encoding="UTF-8-sig") as f_write:
     f_write.write(final_data) 
