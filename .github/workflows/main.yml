@@ -22,6 +22,7 @@ jobs:
         git config --local user.name "paullabkorea"
         git add .
         git commit -m "Run crawler and update current data"
+        git push origin master
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
