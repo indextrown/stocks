@@ -84,3 +84,6 @@ final_data = f"var 시가총액 = '{시가총액}';\n\
 " + final_data
 with open('data.js', "w", encoding="UTF-8-sig") as f_write:
     f_write.write(final_data) 
+#파일을 역순으로   
+with open('data1.js', "w", encoding="UTF-8-sig" , reverse=True) as f_write:
+    f_write.write(final_data) 
